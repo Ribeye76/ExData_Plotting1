@@ -1,8 +1,8 @@
-dataFile <- "./data/household_power_consumption.txt"
-data <- read.table(dataFile, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
-subSetData <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
-datetime <- strptime(paste(subSetData$Date, subSetData$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
-globalActivePower <- as.numeric(subSetData$Global_active_power)
+file <- "household_power_consumption.txt"
+hpc <- read.table(file, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+hpc <- hpc[hpc$Date %in% c("1/2/2007","2/2/2007") ,]
+datetime <- strptime(paste(hpc$Date, hpc$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
+gAP <- as.numeric(hpc$Global_active_power)
 png("plot2.png", width=480, height=480)
-plot(datetime, globalActivePower, type="l", xlab="", ylab="Global Active Power (kilowatts)")
+plot(datetime, gAP, type="l", xlab="", ylab="Global Active Power (kilowatts)")
 dev.off()
